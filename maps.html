@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height" />
+    <link rel="stylesheet" type="text/css" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Signika:300,400,700" />
+    <link rel="shortcut icon" 		type="image/x-icon"			href="img/favicon.ico"	/>
+    <link rel="apple-touch-icon" 	type="text/css" 			href="img/favicon.png"	/>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/icons.css" />
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <link rel="stylesheet" href="./css/routing_styles.css">
+    <link rel="stylesheet" href="./css/main_style.css">
+</head>
+<body>
+<div id="map"></div>
+<div id="panel"></div>
+
+
+
+<div class="popup_w" id="popup_thnx_alert_added" ><span class="btn_close_w"></span>
+    <div class="popup_header">
+        <sup class="x_icn_alerts"></sup>
+        <span>Congratulations!</span>
+    </div>
+    <div class="popup_body popup_thnx_text">
+        You successfully set up street cleaning alerts for
+        <br /> <br />
+        <div class="quote">
+            a27th Ave, San Francisco, Caddress. Xtreet will remind you to move your car.
+        </div>
+        Email alerts may not reach you if our ip is blocked by your firewall or message goes to spam folder. SMS alerts may not reach you if your device is off or service is not available, for example poor reception in a garage or a basement.
+    </div>
+    <div class="e_button">
+        <button class="stretch">Ok</button>
+    </div>
+</div>
+
+<div class="popup_w" id="popup_parking_info" ><span class="btn_close_w"></span>
+    <div class="popup_header">
+        <sup class="x_icn_parking_info"></sup>
+        <span>Get parking information</span>
+    </div>
+    <div class="e_button">
+        <button class="stretch">Tap on a map</button>
+    </div>
+    <div class="e_button">
+        <button class="stretch">Enter address </button>
+    </div>
+</div>
+
+<div class="popup_w" id="popup_address_not_found" ><span class="btn_close_w"></span>
+    <div class="popup_header">
+        <sup class="x_icn_no_address"></sup>
+        <span>Address not found</span>
+    </div>
+    <div class="popup_body popup_thnx_text">
+        Please enter valid San Francisco address.
+    </div>
+    <div class="e_button">
+        <button class="stretch">Ok</button>
+    </div>
+</div>
+
+<!-- ====================== POP-UP on marker ======================= -->
+<div class="popup_w popup_on_marker_box popup_on_marker_fixed" id="popup_on_marker" ><span class="btn_close_w"></span>
+    <div class="popup_header">
+        <sup class="x_icn_variable hicn_1"></sup>
+        <span>Wlaking</span>
+    </div>
+    <div class="popup_body">
+        <div class="situation_message padding_lr">
+            <div id="fromBlock">
+                <span id="upperFrom">From:</span>
+                <h1 id="from"></h1>
+                <hr id="hrFrom">
+            </div>
+            <div id="toBlock">
+                <span id="upperTo">To:</span>
+                <h1 id="to"></h1>
+                <hr id="hrTo">
+            </div>
+
+
+        </div>
+        <div id="walkinBlock"><h1 id="walkingRoutes">Walking Routes</h1></div>
+        <div id="altBlock">
+
+            <div id="altRouteBlock">
+                <div class="mainwalk">
+                    <sup class="x_icn_variable hicn_15 walkingMan"></sup>
+                    <span class="altRoute" id="viaRoud">via US-101</span>
+                    <h1 class="altRouteH1" id="distance">25 km</h1>
+                </div>
+                <hr id="hrAlt">
+                <div  class="altwalk">
+                    <sup class="x_icn_variable hicn_16 walkingMan"></sup>
+                    <span class="altRoute" id="viaRoudAlt">via US-101</span>
+                    <h1 class="altRouteH1" id="distanceAlt">25 km</h1>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- ======================== TESTER ========================== -->
+<!--<div class="tester">-->
+    <!--<div>-->
+        <!--<div class="hn4">-->
+            <!--<div>Pop-up Tester</div>-->
+        <!--</div>-->
+        <!--<div class="hn6">-->
+            <!--<div>Pop-ups</div>-->
+        <!--</div>-->
+        <!--<span class="popup_thnx_alert_added">Alert Added</span>-->
+        <!--<span class="popup_parking_info">Parking info</span>-->
+        <!--<span class="popup_address_not_found">Address not found</span>-->
+
+        <!--<div class="hn6">-->
+            <!--<div>Marker pop-ups</div>-->
+        <!--</div>-->
+        <!--<span class="popup_on_marker">-->
+                <!--popup_on_marker-->
+            <!--</span>-->
+
+    <!--</div>-->
+<!--</div>-->
+<!-- =====================HEADER====================== -->
+<header class="main_header">
+    <div class="logo">
+        <a href="/"></a>
+    </div>
+    <div class="btn_mobile_search"></div>
+    <div class="header_search_elements">
+        <form class="form_style_1 header_search_box">
+            <div class="btn_geolocation">
+                <button type="button" class="btn_find_me icn_btn"></button>
+            </div>
+            <div class="search_box_container">
+                <div class="search_box">
+                    <input class="inp_search" type="search" placeholder="Search by address" />
+                    <button class="btn_search" type="submit"></button>
+                </div>
+                    <div id="display" class="clear">
+                        <select size="10" class="addressesAuroCom clear"></select>
+                    </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="btn_menu"></div>
+
+    <div class="user_status_container logged"><!-- if user logged - add class 'logged' -->
+        <div class="header_mobile_user_btn"></div>
+        <div class="logged_or_not">
+            <div class="logged_user_header_block">
+                <div>
+                    <a href="/userpreferences" id="user_status_container_user_name" class="logged_user_name">Alexander Rachinsky</a><button class="logout_h_btn">Log Out</button>
+                </div>
+            </div>
+            <div class="login_header_block">
+                <div>
+                    <span class="icn_btn login_form_btn">Log in</span><sup>or</sup><span class="signup_form_btn">Sign up</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--=====================FOOTER -->
+<footer class="main_footer">
+    <div class="resolution">
+        <div class="center_container">
+            <ul class="copyright">
+                <li><a href="#">&copy; Xtreet 2017</a></li>
+                <li><a href="#">Disclamer</a></li>
+                <li><a href="#">Contacts</a></li>
+            </ul>
+            <ul class="socicons">
+                <li><a class="x_icn_soc_twitter" href="#"></a></li>
+                <li><a class="x_icn_soc_facebook" href="#"></a></li>
+                <li><a class="x_icn_soc_google_plus" href="#"></a></li>
+                <li><a class="x_icn_soc_bbb" href="#"></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+
+<script src="src/pop_up.js"></script>
+<script src="src/maps_view.js"></script>
+<script src="src/markers.js"></script>
+<script src="src/taps_mark.js"></script>
+<script src="src/routing.js"></script>
+<script src="src/get_coords.js"></script>
+<script src="src/GetCoords_on_adress.js"></script>
+<!--<script src="dist/bundle.js"></script>-->
+
+
+</body>
+</html>
