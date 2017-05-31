@@ -110,6 +110,11 @@ function addRouteShapeToMap(route){
 
     //Click bouonds polyline
     $('.mainwalk').click(function(e){
+
+        $("#popup_on_marker").removeClass("active");
+        $(".mainwalk").clone().prependTo("#routesBlock");
+        $("#popup_route").addClass("active");
+
         map.removeObject(poly);
         map.addObject(poly1);
         map.setViewBounds(poly1.getBounds(), true);
@@ -118,6 +123,9 @@ function addRouteShapeToMap(route){
     });
 
     $('.altwalk').click(function(e){
+        $("#popup_route").addClass("active");
+        $(".altwalk").clone().prependTo("#routesBlock");
+        $("#popup_on_marker").removeClass("active");
 
         map.removeObject(poly1);
         map.addObject(poly);
@@ -268,7 +276,7 @@ function addManueversToPanel(route){
         }
     }
 
-    document.getElementById('panel').appendChild(nodeOL);
+    document.getElementById('routesBlock').appendChild(nodeOL);
 }
 
 
