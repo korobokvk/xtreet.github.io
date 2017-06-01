@@ -112,7 +112,16 @@ function addRouteShapeToMap(route){
     $('.mainwalk').click(function(e){
 
         $("#popup_on_marker").removeClass("active");
-        $(".mainwalk").clone().prependTo("#routesBlock");
+
+        if($("#routesDetails").length > 0) {
+            $("#routesDetails").empty();
+            $("#fromRouteDetail").empty();
+        }
+
+        $(".mainwalk").clone().prependTo("#routesDetails");
+
+        $("#fromRouteDetail").append($("#from").text());
+
         $("#popup_route").addClass("active");
 
         map.removeObject(poly);
@@ -123,8 +132,18 @@ function addRouteShapeToMap(route){
     });
 
     $('.altwalk').click(function(e){
+
         $("#popup_route").addClass("active");
-        $(".altwalk").clone().prependTo("#routesBlock");
+
+        if($("#routesDetails").length > 0) {
+            $("#routesDetails").empty();
+            $("#fromRouteDetail").empty();
+        }
+
+        $(".altwalk").clone().prependTo("#routesDetails");
+
+        $("#fromRouteDetail").append($("#from").text());
+
         $("#popup_on_marker").removeClass("active");
 
         map.removeObject(poly1);
@@ -167,7 +186,7 @@ function addWaypointsToPanel(route){
        if(typeof (GetFullAddress.addressStreet && GetFullAddress.HouseNumber) !== 'undefined')  {
            fromElem.textContent = GetFullAddress.HouseNumber + ", " + GetFullAddress.addressStreet;
        } else if((typeof (GetFullAddress.addressStreet && GetFullAddress.HouseNumber) === 'undefined') && this.Response.View["0"].Result["0"].Location.Address.District) {
-           fromElem.textContent = this.Response.View["0"].Result["0"].Location.Address.District
+               fromElem.textContent = this.Response.View["0"].Result["0"].Location.Address.District
        } else {
            fromElem.textContent = this.Response.View["0"].Result["0"].Location.Address.Label
        }
@@ -253,9 +272,11 @@ function addManueversToPanel(route){
         j;
 
     nodeOL.style.fontSize = 'small';
-    nodeOL.style.marginLeft ='5%';
-    nodeOL.style.marginRight ='5%';
+    // nodeOL.style.marginLeft ='5%';
+    // nodeOL.style.marginRight ='5%';
+
     nodeOL.className = 'directions';
+
 
     // Add a marker for each maneuver
     for (i = 0;  i < route.leg.length; i += 1) {
@@ -265,14 +286,22 @@ function addManueversToPanel(route){
 
             var li = document.createElement('li'),
                 spanArrow = document.createElement('span'),
-                spanInstruction = document.createElement('span');
+                spanInstruction = document.createElement('span'),
+                hr = document.createElement('hr');
 
+            hr.style.opacity = "0.3";
+            hr.style.visibility = 'visible';
+            hr.style.height = '1px';
             spanArrow.className = 'arrow '  + maneuver.action;
             spanInstruction.innerHTML = maneuver.instruction;
+            li.style.paddingLeft = '10px';
+            li.style.paddingRight = '10px';
             li.appendChild(spanArrow);
             li.appendChild(spanInstruction);
+            // nodeOL.appendChild(hr);
 
             nodeOL.appendChild(li);
+
         }
     }
 

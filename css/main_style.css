@@ -193,4 +193,39 @@ select {
 }
 .popup_body_routes{
     line-height:16px;
-    height: auto;}
+    height: auto;
+}
+#routesDetails {
+    padding: 5px;
+    border-bottom: 1px solid #e2e3e7;
+}
+#fromWalk {
+    height: 55px;
+    border-bottom: 1px solid #e2e3e7;
+}
+li {
+    border-bottom: 1px solid #e2e3e7;
+    height: 70px;
+}
+#routedetailsFrom {
+    font-size: small;
+}
+.hicn_20 {
+    background: url(../img/marker_route_start.svg) no-repeat top left;
+    background-size: contain;
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+#routesBlock {
+    height: 250px;
+    overflow-x: scroll;
+}
+#fromRouteDetail {
+    display: inline-block;
+    margin-left: 50px;
+    margin-top: 15px;
+}
