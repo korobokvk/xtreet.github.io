@@ -9,9 +9,9 @@ function setUpClickListener(map) {
             evt.currentPointer.viewportY);
         var waypoint0 = coord.lat.toFixed(4) + ',' + coord.lng.toFixed(4);
         if(tic > 0) {
-            evt.preventDefault()
+            evt.preventDefault();
             removeMarkers();
-            location.reload()
+            location.reload();
 
             // removePolyLine();
             tic = 0

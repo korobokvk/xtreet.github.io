@@ -27,6 +27,7 @@ var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
 // Create the default UI components
 var ui = H.ui.UI.createDefault(map, defaultLayers);
+console.log(ui)
 
 // Now use the map as required...
 
