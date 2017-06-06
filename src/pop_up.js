@@ -64,16 +64,16 @@ function close_all_popups() {
 
 // POP-UP WINDOWS CLOSE
 //===============================================================
-$(".popup_w .btn_close_w").click(function () {
-    //$(this).parent().removeClass("active");
-    close_all_popups();
-    $(".tester span").removeClass("active"); // tester
-});
-
-$(".btn_change_w").click(function(){
-    $("#popup_route").removeClass('active');
-    $("#popup_on_marker").toggleClass("active")
-});
+// $(".popup_w .btn_close_w").click(function () {
+//     //$(this).parent().removeClass("active");
+//     close_all_popups();
+//     $(".tester span").removeClass("active"); // tester
+// });
+//
+// $(".btn_change_w").click(function(){
+//     $("#popup_route").removeClass('active');
+//     $("#popup_on_marker").toggleClass("active")
+// });
 // DON'T CLOSE POPUP IF SELECT FILE LOAD
 //===============================================================
 $("#file_8").focus(function () {
@@ -84,16 +84,16 @@ $("#file_8").focus(function () {
 
 // CLICK MILK
 //===============================================================
-jQuery(function ($) {
-    $(document).mouseup(function (e) {
-        var div = $(".popup_w:not(.fileload)");
-        if (!div.is(e.target)
-            && div.has(e.target).length === 0) {
-            div.removeClass("active");
-            $(".tester span").removeClass("active"); // TESTER
-        }
-    });
-});
+// jQuery(function ($) {
+//     $(document).mouseup(function (e) {
+//         var div = $(".popup_w:not(.fileload)");
+//         if (!div.is(e.target)
+//             && div.has(e.target).length === 0) {
+//             div.removeClass("active");
+//             $(".tester span").removeClass("active"); // TESTER
+//         }
+//     });
+// });
 
 
 // FORMS - PLUS\MINUS NUMBER PRODUCT
