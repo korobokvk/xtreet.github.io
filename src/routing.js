@@ -8,7 +8,7 @@ function calculateRouteFromAtoB (platform, waypoint1) {
             waypoint0: '37.5739,-122.3593',
             waypoint1: waypoint1,
             routeattributes: 'waypoints,summary,shape,legs',
-            // maneuverattributes: 'direction,action'
+            maneuverattributes: 'direction,action'
 
         };
 
@@ -103,25 +103,36 @@ function addRouteShapeToMap(route){
         },
         visibility: true
     });
-
     poly = Polyline,
-    poly1 = polylineAlt;
-
+        poly1 = polylineAlt;
     map.addObject(poly);
     map.addObject(poly1);
 
     //Click bouonds polyline
     $('.mainwalk').click(function(e){
 
-        addEventsOnClick(poly, poly1, '.mainwalk', e);
+        $("#popup_on_marker").removeClass("active");
+
+        if($("#routesDetails").length > 0) {
+            $("#routesDetails").empty();
+            $("#fromRouteDetail").empty();
+        }
+
+        $(".mainwalk").clone().prependTo("#routesDetails");
+
+        $("#fromRouteDetail").append($("#from").text());
+
+        $("#popup_route").addClass("active");
+
+        map.removeObject(poly);
+        map.addObject(poly1);
+        map.setViewBounds(poly1.getBounds(), true);
+        $('.inp_search').val($("#to").text());
+        e.stopPropagation();
     });
 
     $('.altwalk').click(function(e){
-        addEventsOnClick(poly1, poly, '.altwalk', e);
 
-    });
-
-    function addEventsOnClick(remove, add, cloneClass, event) {
         $("#popup_route").addClass("active");
 
         if($("#routesDetails").length > 0) {
@@ -129,18 +140,19 @@ function addRouteShapeToMap(route){
             $("#fromRouteDetail").empty();
         }
 
-        $(cloneClass).clone().prependTo("#routesDetails");
+        $(".altwalk").clone().prependTo("#routesDetails");
 
         $("#fromRouteDetail").append($("#from").text());
 
         $("#popup_on_marker").removeClass("active");
 
-        map.removeObject(remove);
-        map.addObject(add);
-        map.setViewBounds(add.getBounds(), true);
+        map.removeObject(poly1);
+        map.addObject(poly);
+        map.setViewBounds(poly.getBounds(), true);
         $('.inp_search').val($("#to").text());
         e.stopPropagation();
-    }
+    });
+
 
 }
 
